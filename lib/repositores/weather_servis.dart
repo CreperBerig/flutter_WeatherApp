@@ -12,9 +12,10 @@ class WeatherServis{
         'lon': 45.00,
         'lang': 'ru',
         'units': 'metric',
-        'appid': '4aa1ca0b12e06de913eeb23d2b07a0d9',
+        'appid': '8ed2a0cf83e275421deb7b5d15e3bf31',
       });
 
+      print(response);
       return WeatherResponse.fromJson(response.data);
     } catch (error) {
       throw Exception("Failed to load data: $error");

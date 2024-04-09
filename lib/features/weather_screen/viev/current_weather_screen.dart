@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_weather_app/repositores/weather_modul.dart';
 
 import '../../../repositores/weather_servis.dart';
+import '../widgets/main_weather_widget.dart';
 
 class CurrentWeatherScreen extends StatefulWidget {
   const CurrentWeatherScreen({super.key});
@@ -21,13 +22,23 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Weather app'),),
+      backgroundColor: Colors.purpleAccent.shade700,
+      /*appBar: AppBar(
+        title: Text(
+          'Weather app',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600
+            ),
+          ),
+        backgroundColor: Colors.purpleAccent.shade700,
+        ),*/
       body: Center(
         child: FutureBuilder(
           future: _weather,
           builder: (context, snapshot) {
             if(snapshot.hasData){
-              return Text('Данные полученны');
+              return MainWeatherWidget(weather: snapshot.requireData,);
             } else {
               return CircularProgressIndicator();
             }
