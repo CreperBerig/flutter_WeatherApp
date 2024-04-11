@@ -55,7 +55,9 @@ class MainWeatherWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(getImage(weather.weather[0].id)),
+            Center(
+              child: Image.asset(getImage(weather.weather[0].id)),
+            ),
             Center(
               child: Column(
                 children: [
