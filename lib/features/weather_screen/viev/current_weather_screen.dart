@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_weather_app/repositores/weather_modul.dart';
+import 'package:simple_weather_app/repositores/weather_servis.dart';
 
-import '../../../repositores/weather_servis.dart';
 import '../widgets/main_weather_widget.dart';
 
 class CurrentWeatherScreen extends StatefulWidget {
@@ -12,37 +12,38 @@ class CurrentWeatherScreen extends StatefulWidget {
 }
 
 class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
-  late Future<WeatherResponse> _weather;
+  late Future<WeatherResponse> weather;
+
   @override
   void initState() {
-    _weather = WeatherServis().fetchWeather();
+    weather = WeatherService().fetchWeather();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purpleAccent.shade700,
-      /*appBar: AppBar(
-        title: Text(
-          'Weather app',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600
-            ),
+      // appBar: AppBar(
+      //   backgroundColor: Color.fromRGBO(168, 79, 171, 1),
+      //   title: Text(
+      //     'Weather App',
+      //     style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+      //   ),
+      // ),
+      body: Container(
+        child: Center(
+          child: FutureBuilder(
+            future: weather,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return MainWeatherWidget(
+                  weather: snapshot.requireData,
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
           ),
-        backgroundColor: Colors.purpleAccent.shade700,
-        ),*/
-      body: Center(
-        child: FutureBuilder(
-          future: _weather,
-          builder: (context, snapshot) {
-            if(snapshot.hasData){
-              return MainWeatherWidget(weather: snapshot.requireData,);
-            } else {
-              return CircularProgressIndicator();
-            }
-          },
         ),
       )
     );
