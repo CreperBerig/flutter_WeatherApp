@@ -5,7 +5,7 @@ import 'weather_modul.dart';
 
 class WeatherService {
   final Dio _dio = Dio();
-  final api_key = '4aa1ca0b12e06de913eeb23d2b07a0d9';
+  final api_key = '8ed2a0cf83e275421deb7b5d15e3bf31';
 
   Future<WeatherResponse> fetchWeather() async {
     try {
